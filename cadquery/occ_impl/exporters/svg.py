@@ -161,13 +161,15 @@ def getSVG(shape, opts=None):
         "hiddenColor": (160, 160, 160),  # RGB 0-255
         "showHidden": True,
         "focus": None,
+        "unitsOfMeasure":"mm",
+        "unitScale":1
     }
 
     if opts:
         d.update(opts)
 
     # need to guess the scale and the coordinate center
-    uom = guessUnitOfMeasure(shape)
+    #uom = guessUnitOfMeasure(shape)
 
     # Handle the case where the height or width are None
     width = d["width"]
@@ -185,7 +187,8 @@ def getSVG(shape, opts=None):
     hiddenColor = tuple(d["hiddenColor"])
     showHidden = bool(d["showHidden"])
     focus = float(d["focus"]) if d.get("focus") else None
-
+    unitScale =float(d["unitScale"])
+    uom=str(d["unitsOfMeasure"])
     hlr = HLRBRep_Algo()
     hlr.Add(shape.wrapped)
 
@@ -251,11 +254,11 @@ def getSVG(shape, opts=None):
             height = (width - 2.0 * marginLeft) * (bb.ylen / bb.xlen) + 2.0 * marginTop
 
         # width pixels for x, height pixels for y
-        unitScale = (width - 2.0 * marginLeft) / bb.xlen
+        #unitScale = (width - 2.0 * marginLeft) / bb.xlen
     else:
         bb_scale = 0.75
         # width pixels for x, height pixels for y
-        unitScale = min(width / bb.xlen * bb_scale, height / bb.ylen * bb_scale)
+        #unitScale = min(width / bb.xlen * bb_scale, height / bb.ylen * bb_scale)
 
     # compute amount to translate-- move the top left into view
     (xTranslate, yTranslate) = (

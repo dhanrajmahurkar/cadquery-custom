@@ -1,4 +1,4 @@
-name: cadquery
+name: cadquery-custom
 channels:
   - conda-forge
 dependencies:
@@ -28,4 +28,4 @@ dependencies:
   - pip
   - pip:
     - --editable=.
-    - git+https://github.com/cadquery/black.git@cq
+    - git+https://github.com/cadquery-custom/black.git@cq
